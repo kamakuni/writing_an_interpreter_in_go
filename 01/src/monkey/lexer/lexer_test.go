@@ -50,9 +50,9 @@ func TestNextToken(t *testing.T) {
 		{token.ASSIGN, "="},
 		{token.IDENT, "add"},
 		{token.LPARAN, "("},
-		{token.IDENT, "x"},
+		{token.IDENT, "five"},
 		{token.COMMA, ","},
-		{token.IDENT, "y"},
+		{token.IDENT, "ten"},
 		{token.RPARAN, ")"},
 		{token.SEMICOLON, ";"},
 	}
