@@ -1,5 +1,9 @@
 package ast
 
+import (
+	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/token"
+)
+
 type Node interface {
 	TokenLiteral() string
 }
@@ -25,3 +29,20 @@ func (p *Program) TokenLiteral() string {
 		return ""
 	}
 }
+
+type LetStatemnt struct {
+	Token token.Token
+	Name  *Identifier
+	Value Expression
+}
+
+func (ls *LetStatemnt) statementNode()       {}
+func (ls *LetStatemnt) TokenLiteral() string { return ls.Token.Literal }
+
+type Identifier struct {
+	Token token.Token
+	Value string
+}
+
+func (i *Identifier) expressionNode()      {}
+func (i *Identifier) TokenLiteral() string { return i.Token.Literal }
