@@ -7,6 +7,11 @@ import (
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/token"
 )
 
+type (
+	prefixParserFn func() ast.Expression
+	infixParserFn  func(ast.Expression) ast.Expression
+)
+
 type Parser struct {
 	l *lexer.Lexer
 
