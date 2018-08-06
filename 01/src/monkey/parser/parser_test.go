@@ -108,5 +108,14 @@ return 993322;
 }
 
 func TestIdentifierExpression(t *testing.T) {
+	input := "foobar;"
 
+	l := lexer.New(input)
+	p := New(l)
+	program := p.ParseProgram()
+	checkParserErrors(t, p)
+
+	if len(program.Statements) != 1 {
+		t.Fatal("program has not enough statements. got=%d", len(program.Statements))
+	}
 }
