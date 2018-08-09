@@ -1,9 +1,10 @@
 package parser
 
 import (
+	"testing"
+
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/ast"
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/lexer"
-	"testing"
 )
 
 func TestLetStatement(t *testing.T) {
@@ -130,6 +131,6 @@ func TestIdentifierExpression(t *testing.T) {
 		t.Errorf("ident.Value not %s, got=%s", "foobar", ident.Value)
 	}
 	if ident.TokenLiteral() != "foobar" {
-		t.Errorf("ident.TokenLiteral not %s. got=%s","foobar",ident.TokenLiteral())
+		t.Errorf("ident.TokenLiteral not %s. got=%s", "foobar", ident.TokenLiteral())
 	}
 }

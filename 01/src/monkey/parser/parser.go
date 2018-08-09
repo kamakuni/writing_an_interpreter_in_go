@@ -2,6 +2,7 @@ package parser
 
 import (
 	"fmt"
+
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/ast"
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/lexer"
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/token"
@@ -68,6 +69,16 @@ func (p *Parser) ParseProgram() *ast.Program {
 	}
 
 	return program
+}
+
+func (p *Parser) parseExpressionStatement() *ast.ExpressionStatement {
+	stmt := &ast.ExpressionStatement{Token: p.curToken}
+	stmt.Expression = p.parseExpression(LOWEST)
+
+	if p.peekTokenIs(token.SEMICOLON) {
+		p.nextToken()
+	}
+	return stmt
 }
 
 func (p *Parser) parseStatement() ast.Statement {
