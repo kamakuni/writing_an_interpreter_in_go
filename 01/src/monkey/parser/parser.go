@@ -8,6 +8,17 @@ import (
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/token"
 )
 
+const (
+	_ int = iota
+	LOWEST
+	EQUALS
+	LESSGREATER
+	SUM
+	PRODUCT
+	PREFIX
+	CALL
+)
+
 type (
 	prefixParserFn func() ast.Expression
 	infixParserFn  func(ast.Expression) ast.Expression
