@@ -11,12 +11,12 @@ import (
 const (
 	_ int = iota
 	LOWEST
-	EQUALS // ==
+	EQUALS      // ==
 	LESSGREATER // < or >
-	SUM // +
-	PRODUCT // *
-	PREFIX // -X or !X
-	CALL // myFunction(X)
+	SUM         // +
+	PRODUCT     // *
+	PREFIX      // -X or !X
+	CALL        // myFunction(X)
 )
 
 type (
@@ -80,6 +80,16 @@ func (p *Parser) ParseProgram() *ast.Program {
 	}
 
 	return program
+}
+
+func (p *Parser) parseExpression(precedence int) ast.Expression {
+	prefix := p.prefixParserFns[p.curToken.Type]
+	if prefix == nil {
+		return nil
+	}
+	leftExp := prefix()
+
+	return leftExp
 }
 
 func (p *Parser) parseExpressionStatement() *ast.ExpressionStatement {
