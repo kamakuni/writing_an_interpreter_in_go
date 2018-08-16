@@ -2,6 +2,7 @@ package ast
 
 import (
 	"bytes"
+
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/token"
 )
 
@@ -23,6 +24,13 @@ type Expression interface {
 type Program struct {
 	Statements []Statement
 }
+
+type IntegerLiteral struct {
+	Token token.Token
+	Value int64
+}
+
+func (il *IntegerLiteral) expressionNode() {}
 
 func (p *Program) String() string {
 	var out bytes.Buffer
