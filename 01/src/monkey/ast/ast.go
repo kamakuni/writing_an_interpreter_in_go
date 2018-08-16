@@ -31,6 +31,7 @@ type IntegerLiteral struct {
 }
 
 func (il *IntegerLiteral) expressionNode() {}
+func (il *IntegerLiteral) TokenLiteral() string {}
 
 func (p *Program) String() string {
 	var out bytes.Buffer
