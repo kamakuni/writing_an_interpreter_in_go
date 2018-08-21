@@ -79,6 +79,24 @@ func testLetStatement(t *testing.T, s ast.Statement, name string) bool {
 	return true
 }
 
+func TestParsingPrefixExpressions(t *testing.T) {
+	prefixTests := []struct {
+		input string
+		operator string
+		integerValue int64
+	}{
+		{"!5;","!",5},
+		{"-15;","-",15}
+	}
+
+	for _, tt := range prefixTests {
+		l := lexer.New(tt.input)
+		p := New(l)
+		program := p.ParseProgram()
+		checkParserErrors(t,p)
+	}
+}
+
 func TestReturnStatement(t *testing.T) {
 	input := `
 return 5;
