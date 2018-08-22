@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/ast"
@@ -109,10 +110,28 @@ func TestParsingPrefixExpressions(t *testing.T) {
 		if exp.operator != tt.operator {
 			t.Fatalf("exp.Operator is not %s. got=%s", tt.operator, exp.Operator)
 		}
-		if !TestIntegerLiteral(t, exp.Right, tt.integerValue) {
+		if !testIntegerLiteral(t, exp.Right, tt.integerValue) {
 			return
 		}
 	}
+}
+
+func testIntegerLiteral(t *testing.T, il ast.Expression, value int64) bool {
+	integ, ok := il.(*ast.IntegerLiteral)
+	if !ok {
+		t.Errorf("il not *ast.IntegerLiteral. got=%T", il)
+		return false
+	}
+	if integ.Value != value {
+		t.Errorf("integ.Value not %d. got=%d", value, integ.Value)
+		return false
+	}
+	if integ.TokenLiteral() != fmt.Sprintf("%d", value) {
+		t.Errorf("integ.TokenLiteral not %d, got=%d", value, integ.TokenLiteral())
+		return false
+	}
+
+	return true
 }
 
 func TestReturnStatement(t *testing.T) {
