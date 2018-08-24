@@ -25,6 +25,12 @@ type Program struct {
 	Statements []Statement
 }
 
+type PrefixExpression struct {
+	Token    token.Token
+	Operator string
+	Right    Expression
+}
+
 type IntegerLiteral struct {
 	Token token.Token
 	Value int64
