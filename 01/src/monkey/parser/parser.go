@@ -52,6 +52,11 @@ func New(l *lexer.Lexer) *Parser {
 	return p
 }
 
+func (p *Parser) noPrefixParseFnError(t token.Token) {
+	msg := fmt.Sprintf("no prefix parse function for %s found", t)
+	p.errors = append(p.errors, msg)
+}
+
 func (p *Parser) parseIdentifier() ast.Expression {
 	return &ast.Identifier{Token: p.curToken, Value: p.curToken.Literal}
 }
