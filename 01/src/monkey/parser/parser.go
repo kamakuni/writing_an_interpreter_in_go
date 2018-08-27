@@ -52,7 +52,7 @@ func New(l *lexer.Lexer) *Parser {
 	return p
 }
 
-func (p *Parser) noPrefixParseFnError(t token.Token) {
+func (p *Parser) noPrefixParseFnError(t token.TokenType) {
 	msg := fmt.Sprintf("no prefix parse function for %s found", t)
 	p.errors = append(p.errors, msg)
 }
@@ -113,6 +113,7 @@ func (p *Parser) ParseProgram() *ast.Program {
 func (p *Parser) parseExpression(precedence int) ast.Expression {
 	prefix := p.prefixParserFns[p.curToken.Type]
 	if prefix == nil {
+		p.noPrefixParseFnError(p.curToken.Type)
 		return nil
 	}
 	leftExp := prefix()
