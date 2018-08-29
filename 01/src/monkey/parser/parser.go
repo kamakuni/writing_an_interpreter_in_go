@@ -84,6 +84,10 @@ func (p *Parser) parsePrefixExpression() ast.Expression {
 		Token:    p.curToken,
 		Operator: p.curToken.Literal,
 	}
+	p.nextToken()
+
+	expression.Right = p.parseExpression(PREFIX)
+
 	return expression
 }
 
