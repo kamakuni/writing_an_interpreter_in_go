@@ -166,6 +166,9 @@ func TestParsingInfixExpression(t *testing.T) {
 		if !ok {
 			t.Fatalf("exp is not ast.InfixExpression. got=%T", smtm.Expression)
 		}
+		if !testIntegerLiteral(t, exp.Left, tt.leftValue) {
+			return
+		}
 	}
 }
 
