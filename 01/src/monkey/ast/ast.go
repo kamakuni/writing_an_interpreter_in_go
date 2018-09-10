@@ -150,3 +150,5 @@ type InfixExpression struct {
 	Operator string
 	Right    Expression
 }
+
+func (ie *InfixExpression) statementNode()       {}
