@@ -113,6 +113,13 @@ func (p *Parser) peekPreference() int {
 	return LOWEST
 }
 
+func (p *Parser) curPreference() int {
+	if p, ok := precedences[p.curToken.Type]; ok {
+		return p
+	}
+	return LOWEST
+}
+
 func (p *Parser) peekError(t token.TokenType) {
 	msg := fmt.Sprintf("expected next token to be %s, got %s insted",
 		t, p.peekToken.Type)
