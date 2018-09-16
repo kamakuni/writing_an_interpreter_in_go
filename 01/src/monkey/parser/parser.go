@@ -131,6 +131,10 @@ func (p *Parser) registerPrefix(tokenType token.TokenType, fn prefixParserFn) {
 	p.prefixParserFns[tokenType] = fn
 }
 
+func (p *Parser) registerInfix(tokenType token.TokenType, fn infixParserFn) {
+	p.infixParserFns[tokenType] = fn
+}
+
 func (p *Parser) nextToken() {
 	p.curToken = p.peekToken
 	p.peekToken = p.l.NextToken()
