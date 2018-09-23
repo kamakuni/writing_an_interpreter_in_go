@@ -105,9 +105,7 @@ func (p *Parser) parsePrefixExpression() ast.Expression {
 		Operator: p.curToken.Literal,
 	}
 	p.nextToken()
-
 	expression.Right = p.parseExpression(PREFIX)
-
 	return expression
 }
 
@@ -119,8 +117,12 @@ func (p *Parser) parseInfixExpression(left ast.Expression) ast.Expression {
 	}
 	precedence := p.curPreference()
 	p.nextToken()
-	expression.Right = p.parseExpression(precedence)
 
+	if expression.Operator == "+" {
+		expression.Right = p.parseExpression(precedence - 1)
+	} else {
+		expression.Right = p.parseExpression(precedence)
+	}
 	return expression
 }
 
