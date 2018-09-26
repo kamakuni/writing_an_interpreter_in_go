@@ -25,3 +25,8 @@ func trace(msg string) string {
 	tracePrint("BEGIN " + msg)
 	return msg
 }
+
+func untrace(msg string) {
+	tracePrint("END " + msg)
+	decIdent()
+}
