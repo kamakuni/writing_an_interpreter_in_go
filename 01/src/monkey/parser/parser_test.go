@@ -302,6 +302,13 @@ func TestIdentifierExpression(t *testing.T) {
 	}
 }
 
+func testIdentifier(t *testing.T, exp ast.Expression, value string) bool {
+	ident, ok := exp.(*ast.Identifier)
+	if !ok {
+		t.Errorf("exp not *ast.Identifier. got=%T", exp)
+		return false
+	}
+}
 func TestIntegerLiteralExpression(t *testing.T) {
 	input := "5;"
 
