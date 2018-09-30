@@ -308,6 +308,11 @@ func testIdentifier(t *testing.T, exp ast.Expression, value string) bool {
 		t.Errorf("exp not *ast.Identifier. got=%T", exp)
 		return false
 	}
+	if ident.Value != value {
+		t.Errorf("ident.Value not %s. got=%s", value, ident.Value)
+		return false
+	}
+	return true
 }
 func TestIntegerLiteralExpression(t *testing.T) {
 	input := "5;"
