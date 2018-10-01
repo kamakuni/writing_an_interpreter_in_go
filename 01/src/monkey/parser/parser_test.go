@@ -116,6 +116,10 @@ func TestParsingPrefixExpressions(t *testing.T) {
 	}
 }
 
+func testLiteralExpression(t *testing.T, exp ast.Expression, expected interface{}) bool {
+	return false
+}
+
 func testIntegerLiteral(t *testing.T, il ast.Expression, value int64) bool {
 	integ, ok := il.(*ast.IntegerLiteral)
 	if !ok {
