@@ -125,6 +125,7 @@ func testLiteralExpression(t *testing.T, exp ast.Expression, expected interface{
 	case string:
 		return testIdentifier(t, exp, v)
 	}
+	t.Errorf("type of exp not handled. got=%s", exp)
 	return false
 }
 
