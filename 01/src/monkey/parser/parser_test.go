@@ -260,6 +260,12 @@ func TestParsingInfixExpression(t *testing.T) {
 }
 
 func testInfixExpression(t *testing.T, exp ast.Expression, left interface{}, opertor string, right interface{}) bool {
+
+	opExp, ok := exp.(*ast.InfixExpression)
+	if !ok {
+		t.Errorf("exp is not ast.InfixExpression. got=%T(%s)", exp, exp)
+		return false
+	}
 	return true
 }
 
