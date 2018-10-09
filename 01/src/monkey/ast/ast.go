@@ -45,6 +45,11 @@ func (pe *PrefixExpression) String() string {
 
 }
 
+type Boolean struct {
+	Token token.Token
+	Value bool
+}
+
 type IntegerLiteral struct {
 	Token token.Token
 	Value int64
