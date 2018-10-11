@@ -50,6 +50,8 @@ type Boolean struct {
 	Value bool
 }
 
+func (b *Boolean) expressionNode() {}
+
 type IntegerLiteral struct {
 	Token token.Token
 	Value int64
