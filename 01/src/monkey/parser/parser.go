@@ -57,11 +57,15 @@ func New(l *lexer.Lexer) *Parser {
 	p.nextToken()
 	p.nextToken()
 
+	// Register parser functions for prefix tokens
+	// identifer, integer, !, -
 	p.prefixParserFns = make(map[token.TokenType]prefixParserFn)
 	p.registerPrefix(token.IDENT, p.parseIdentifier)
 	p.registerPrefix(token.INT, p.parseIntegerLiteral)
 	p.registerPrefix(token.BANG, p.parsePrefixExpression)
 	p.registerPrefix(token.MINUS, p.parsePrefixExpression)
+	// Register parser functions for Infix tokens
+	// +, -, /, *, =, != , <, >
 	p.infixParserFns = make(map[token.TokenType]infixParserFn)
 	p.registerInfix(token.PLUS, p.parseInfixExpression)
 	p.registerInfix(token.MINUS, p.parseInfixExpression)
@@ -124,11 +128,7 @@ func (p *Parser) parseInfixExpression(left ast.Expression) ast.Expression {
 	precedence := p.curPreference()
 	p.nextToken()
 
-	if expression.Operator == "+" {
-		expression.Right = p.parseExpression(precedence - 1)
-	} else {
-		expression.Right = p.parseExpression(precedence)
-	}
+	expression.Right = p.parseExpression(precedence)
 	return expression
 }
 
@@ -185,6 +185,7 @@ func (p *Parser) ParseProgram() *ast.Program {
 }
 
 func (p *Parser) parseExpression(precedence int) ast.Expression {
+	// get a prefix parser function suited for data type
 	prefix := p.prefixParserFns[p.curToken.Type]
 	if prefix == nil {
 		p.noPrefixParseFnError(p.curToken.Type)
