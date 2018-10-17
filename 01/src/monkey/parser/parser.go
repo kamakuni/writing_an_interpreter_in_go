@@ -90,6 +90,10 @@ func (p *Parser) parseIdentifier() ast.Expression {
 	return &ast.Identifier{Token: p.curToken, Value: p.curToken.Literal}
 }
 
+func (p *Parser) parseBoolean() ast.Expression {
+	return &ast.Boolean{Token: p.curToken, Value: p.curTokenIs(token.TRUE)}
+}
+
 func (p *Parser) parseIntegerLiteral() ast.Expression {
 	defer untrace(trace("parseIntegerLiteral"))
 
