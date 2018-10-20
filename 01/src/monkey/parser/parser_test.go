@@ -208,6 +208,14 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 			"false",
 			"false",
 		},
+		{
+			"3 > 5 == false",
+			"((3 > 5) == false)",
+		},
+		{
+			"3 < 5 == true",
+			"((3 < 5 == true))",
+		},
 	}
 
 	for _, tt := range tests {
