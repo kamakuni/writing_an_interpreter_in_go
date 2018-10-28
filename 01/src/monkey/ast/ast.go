@@ -153,6 +153,13 @@ func (es *ExpressionStatement) String() string {
 func (es *ExpressionStatement) statementNode()       {}
 func (es *ExpressionStatement) TokenLiteral() string { return es.Token.Literal }
 
+type IfExpression struct {
+	Token       token.Token
+	Condition   Expression
+	Consequence *BlockStatement
+	Alternative *BlockStatement
+}
+
 type InfixExpression struct {
 	Token    token.Token
 	Left     Expression
