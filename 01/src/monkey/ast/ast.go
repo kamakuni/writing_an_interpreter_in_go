@@ -160,6 +160,8 @@ type IfExpression struct {
 	Alternative *BlockStatement
 }
 
+func (ie *IfExpression) expressionNode() {}
+
 type InfixExpression struct {
 	Token    token.Token
 	Left     Expression
