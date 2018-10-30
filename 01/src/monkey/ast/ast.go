@@ -162,6 +162,21 @@ type IfExpression struct {
 
 func (ie *IfExpression) expressionNode()      {}
 func (ie *IfExpression) TokenLiteral() string { return ie.TokenLiteral }
+func (ie *IfExpression) String() string {
+	var out butes.Buffer
+
+	out.WriteString("if")
+	out.WriteString(ie.Condition.String())
+	out.WriteString(" ")
+	out.WriteString(ie.Consequence.String())
+
+	if ie.Alternative != nil {
+		out.WriteString("else ")
+		out.WriteString(e.Alternative.String())
+	}
+
+	return out.String()
+}
 
 type InfixExpression struct {
 	Token    token.Token
