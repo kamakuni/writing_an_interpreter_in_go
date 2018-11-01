@@ -183,6 +183,8 @@ type BlockStatement struct {
 	Statements []Statement
 }
 
+func (bs *BlockStatement) statementNode() {}
+
 type InfixExpression struct {
 	Token    token.Token
 	Left     Expression
