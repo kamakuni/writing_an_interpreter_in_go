@@ -172,10 +172,15 @@ func (ie *IfExpression) String() string {
 
 	if ie.Alternative != nil {
 		out.WriteString("else ")
-		out.WriteString(e.Alternative.String())
+		out.WriteString(ie.Alternative.String())
 	}
 
 	return out.String()
+}
+
+type BlockStatement struct {
+	Token      token.Token
+	Statements []Statement
 }
 
 type InfixExpression struct {
