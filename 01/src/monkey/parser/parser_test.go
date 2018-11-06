@@ -379,6 +379,10 @@ func TestIfExpression(t *testing.T) {
 	program := p.ParseProgram()
 	checkParserErrors(t, p)
 
+	if len(program.Statements) != 1 {
+		t.Fatalf("program.Body does not contain %d statements. got=%d", 1, len(program.Statements))
+	}
+
 }
 
 func TestIdentifierExpression(t *testing.T) {
