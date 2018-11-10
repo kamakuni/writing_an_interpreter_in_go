@@ -397,6 +397,9 @@ func TestIfExpression(t *testing.T) {
 		return
 	}
 
+	if len(exp.Consequence.Statements) != 1 {
+		t.Errof("consequence is not 1 statements. got=%d\n", len(exp.Consequence.Statements))
+	}
 }
 
 func TestIdentifierExpression(t *testing.T) {
