@@ -405,6 +405,10 @@ func TestIfExpression(t *testing.T) {
 	if !ok {
 		t.Fatalf("Statements[0] is not ast.ExpressionStatement. got=%T\n", exp.Consequence.Statements[0])
 	}
+
+	if !testIdentifier(t, consequence.Expression, "x") {
+		return
+	}
 }
 
 func TestIdentifierExpression(t *testing.T) {
