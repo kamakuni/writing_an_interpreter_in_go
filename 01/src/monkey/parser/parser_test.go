@@ -409,6 +409,10 @@ func TestIfExpression(t *testing.T) {
 	if !testIdentifier(t, consequence.Expression, "x") {
 		return
 	}
+
+	if exp.Alternative != nil {
+		t.Errorf("exp.Alternative.Statements was not nil.", exp.Alternative)
+	}
 }
 
 func TestIdentifierExpression(t *testing.T) {
