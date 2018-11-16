@@ -115,6 +115,11 @@ func (p *Parser) parseIfExpression() ast.Expression {
 	return expression
 }
 
+func (p *Parser) parseBlockStatemet() *ast.BlockStatement {
+	block := &ast.BlockStatement{Token: p.curToken}
+	return block
+}
+
 func (p *Parser) parseBoolean() ast.Expression {
 	return &ast.Boolean{Token: p.curToken, Value: p.curTokenIs(token.TRUE)}
 }
