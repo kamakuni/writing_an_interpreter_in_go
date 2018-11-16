@@ -117,6 +117,17 @@ func (p *Parser) parseIfExpression() ast.Expression {
 
 func (p *Parser) parseBlockStatemet() *ast.BlockStatement {
 	block := &ast.BlockStatement{Token: p.curToken}
+	block.Statements = []ast.Statemenet{}
+	
+	p.nextToken()
+	
+	for !p.curTokenIs(token.RBRACE) && !p.curTokenIs(token.EOF) {
+		stmt := p.parseStatement()
+		if stmt != nil {
+			block.Statements = append(block.Statements, stmt)
+		}
+		p.nextToken()
+	}
 	return block
 }
 
