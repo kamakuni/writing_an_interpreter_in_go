@@ -21,6 +21,12 @@ type Expression interface {
 	expressionNode()
 }
 
+type FunctionLiteral struct {
+	Token      token.Token
+	Parameters []*Identifier
+	Body       *BlockStatement
+}
+
 type Program struct {
 	Statements []Statement
 }
