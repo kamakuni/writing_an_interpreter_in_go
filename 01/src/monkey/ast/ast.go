@@ -27,6 +27,8 @@ type FunctionLiteral struct {
 	Body       *BlockStatement
 }
 
+func (f *FunctionLiteral) expressionNode() {}
+
 type Program struct {
 	Statements []Statement
 }
