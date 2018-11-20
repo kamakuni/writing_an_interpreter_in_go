@@ -27,7 +27,9 @@ type FunctionLiteral struct {
 	Body       *BlockStatement
 }
 
-func (f *FunctionLiteral) expressionNode() {}
+func (fl *FunctionLiteral) expressionNode() {}
+func (fl *FunctionLiteral) TokenLiteral() string { return fl.Token.Literal }
+
 
 type Program struct {
 	Statements []Statement
