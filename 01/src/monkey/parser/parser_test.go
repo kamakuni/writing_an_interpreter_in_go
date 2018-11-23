@@ -86,6 +86,10 @@ func TestFunctionLiteralParsing(t *testing.T) {
 	p := New(l)
 	program := p.ParseProgram()
 	checkParserErrors(t, p)
+
+	if len(program.Statements) != 1 {
+		t.Fatalf("program.Body does not contain %d statements. got=%d\n", 1, len(program.Statements))
+	}
 }
 
 func TestParsingPrefixExpressions(t *testing.T) {
