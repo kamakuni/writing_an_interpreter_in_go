@@ -104,6 +104,8 @@ func TestFunctionLiteralParsing(t *testing.T) {
 	if len(function.Parameters) != 2 {
 		t.Fatalf("function literal parameters wrong. want 2. got=%d", len(function.Parameters))
 	}
+
+	testLiteralExpression(t, function.Parameters[0], "x")
 }
 
 func TestParsingPrefixExpressions(t *testing.T) {
