@@ -93,9 +93,17 @@ func TestFunctionLiteralParsing(t *testing.T) {
 
 	stmt, ok := program.Statements[0].(*ast.ExpressionStatement)
 	if !ok {
-		t.Fatalf("program.Statement[0] is not ast.ExpressionStatement. got=%d", program.Statements[0])
+		t.Fatalf("program.Statement[0] is not ast.ExpressionStatement. got=%T", program.Statements[0])
 	}
 
+	function, ok := stmt.Expression.(*ast.FunctionLiteral)
+	if !ok {
+		t.Fatalf("ast.Expression is not FunctionLiteral. got=%T", stmt.Expression)
+	}
+
+	if len(function.Parameters) != 2 {
+		t.Fatalf("function literal parameters wrong. want 2. got=%d", len(function.Parameters))
+	}
 }
 
 func TestParsingPrefixExpressions(t *testing.T) {
