@@ -106,6 +106,8 @@ func TestFunctionLiteralParsing(t *testing.T) {
 	}
 
 	testLiteralExpression(t, function.Parameters[0], "x")
+	testLiteralExpression(t, function.Parameters[1], "y")
+
 }
 
 func TestParsingPrefixExpressions(t *testing.T) {
