@@ -112,6 +112,11 @@ func TestFunctionLiteralParsing(t *testing.T) {
 		t.Fatalf("function.Body.Statements has not 1 statements. got=%d", len(function.Body.Statements))
 	}
 
+	bodyStmt, ok := function.Body.Statements[0].(*ast.ExpressionStatement)
+	if !ok {
+		t.Fatalf("function body statement is not ast.Expression statement. got=%T", function.Body.Statements[0])
+	}
+
 }
 
 func TestParsingPrefixExpressions(t *testing.T) {
