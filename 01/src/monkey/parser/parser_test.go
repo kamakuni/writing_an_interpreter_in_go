@@ -117,6 +117,7 @@ func TestFunctionLiteralParsing(t *testing.T) {
 		t.Fatalf("function body statement is not ast.Expression statement. got=%T", function.Body.Statements[0])
 	}
 
+	testInfixExpression(t, bodyStmt.Expression, "x", "+", "y")
 }
 
 func TestParsingPrefixExpressions(t *testing.T) {
