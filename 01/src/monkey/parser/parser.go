@@ -68,6 +68,7 @@ func New(l *lexer.Lexer) *Parser {
 	p.registerPrefix(token.FALSE, p.parseBoolean)
 	p.registerPrefix(token.LPARAN, p.parseGroupedExpression)
 	p.registerPrefix(token.IF, p.parseIfExpression)
+	p.registerPrefix(token.FUNCTION, p.parseFunctionExpression)
 	// Register parser functions for Infix tokens
 	// +, -, /, *, =, != , <, >
 	p.infixParserFns = make(map[token.TokenType]infixParserFn)
@@ -129,9 +130,9 @@ func (p *Parser) parseIfExpression() ast.Expression {
 func (p *Parser) parseBlockStatemet() *ast.BlockStatement {
 	block := &ast.BlockStatement{Token: p.curToken}
 	block.Statements = []ast.Statemenet{}
-	
+
 	p.nextToken()
-	
+
 	for !p.curTokenIs(token.RBRACE) && !p.curTokenIs(token.EOF) {
 		stmt := p.parseStatement()
 		if stmt != nil {
