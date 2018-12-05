@@ -27,6 +27,8 @@ type CallExpression struct {
 	Arguments []Expression
 }
 
+func (ce *CallExpression) expressionNode() {}
+
 type FunctionLiteral struct {
 	Token      token.Token
 	Parameters []*Identifier
