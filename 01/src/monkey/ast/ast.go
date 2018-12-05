@@ -21,6 +21,12 @@ type Expression interface {
 	expressionNode()
 }
 
+type CallExpression struct {
+	Token     token.Token
+	Function  Expression // Identifier or FunctionLiteral
+	Arguments []Expression
+}
+
 type FunctionLiteral struct {
 	Token      token.Token
 	Parameters []*Identifier
