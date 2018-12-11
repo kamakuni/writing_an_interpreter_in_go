@@ -173,7 +173,7 @@ func (p *Parser) parseIfExpression() ast.Expression {
 
 func (p *Parser) parseBlockStatemet() *ast.BlockStatement {
 	block := &ast.BlockStatement{Token: p.curToken}
-	block.Statements = []ast.Statemenet{}
+	block.Statements = []ast.Statement{}
 
 	p.nextToken()
 
