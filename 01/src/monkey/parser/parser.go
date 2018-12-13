@@ -96,7 +96,7 @@ func (p *Parser) parseIdentifier() ast.Expression {
 func (p *Parser) parseFunctionExpression() ast.Expression {
 	lit := &ast.FunctionLiteral{Token: p.curToken}
 
-	if !p.expectPeek(token.LPARE) {
+	if !p.expectPeek(token.LPARAN) {
 		return nil
 	}
 
