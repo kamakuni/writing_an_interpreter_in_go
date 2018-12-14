@@ -80,6 +80,7 @@ func New(l *lexer.Lexer) *Parser {
 	p.registerInfix(token.NOT_EQ, p.parseInfixExpression)
 	p.registerInfix(token.LT, p.parseInfixExpression)
 	p.registerInfix(token.GT, p.parseInfixExpression)
+	p.registerInfix(token.LPARAN, p.parseCallExpression)
 
 	return p
 }
@@ -106,7 +107,7 @@ func (p *Parser) parseFunctionExpression() ast.Expression {
 		return nil
 	}
 
-	lit.Body = p.parseBlockStatemet()
+	lit.Body = p.parseBlockStatement()
 
 	return lit
 }
@@ -155,7 +156,7 @@ func (p *Parser) parseIfExpression() ast.Expression {
 		return nil
 	}
 
-	expression.Condition = p.parseBlockStatement()
+	expression.Consequence = p.parseBlockStatement()
 
 	if p.peekTokenIs(token.ELSE) {
 		p.nextToken()
