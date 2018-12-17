@@ -217,7 +217,7 @@ func TestParsingPrefixExpressions(t *testing.T) {
 		if exp.Operator != tt.operator {
 			t.Fatalf("exp.Operator is not %s. got=%s", tt.operator, exp.Operator)
 		}
-		if !testIntegerLiteral(t, exp.Right, tt.integerValue) {
+		if !testIntegerLiteral(t, exp.Right, tt.value.(int64)) {
 			return
 		}
 	}
@@ -383,9 +383,9 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 func TestParsingInfixExpression(t *testing.T) {
 	infixTests := []struct {
 		input      string
-		leftValue  int64
+		leftValue  interface{}
 		operator   string
-		rightValue int64
+		rightValue interface{}
 	}{
 		{"5 + 5;", 5, "+", 5},
 		{"5 - 5;", 5, "-", 5},
@@ -415,13 +415,13 @@ func TestParsingInfixExpression(t *testing.T) {
 		if !ok {
 			t.Fatalf("exp is not ast.InfixExpression. got=%T", smtm.Expression)
 		}
-		if !testIntegerLiteral(t, exp.Left, tt.leftValue) {
+		if !testIntegerLiteral(t, exp.Left, tt.leftValue.(int64)) {
 			return
 		}
 		if exp.Operator != tt.operator {
 			t.Fatalf("exp.Operator is not '%s'. got=%s", tt.operator, exp.Operator)
 		}
-		if !testIntegerLiteral(t, exp.Right, tt.rightValue) {
+		if !testIntegerLiteral(t, exp.Right, tt.rightValue.(int64)) {
 			return
 		}
 	}
@@ -446,7 +446,6 @@ func testInfixExpression(t *testing.T, exp ast.Expression, left interface{}, ope
 	}
 	return true
 }
-
 func TestReturnStatement(t *testing.T) {
 	input := `
 return 5;
@@ -503,7 +502,7 @@ func TestIfExpression(t *testing.T) {
 	}
 
 	if len(exp.Consequence.Statements) != 1 {
-		t.Errof("consequence is not 1 statements. got=%d\n", len(exp.Consequence.Statements))
+		t.Errorf("consequence is not 1 statements. got=%d\n", len(exp.Consequence.Statements))
 	}
 
 	consequence, ok := exp.Consequence.Statements[0].(*ast.ExpressionStatement)
