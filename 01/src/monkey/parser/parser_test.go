@@ -463,13 +463,13 @@ func TestParsingInfixExpression(t *testing.T) {
 		if !ok {
 			t.Fatalf("exp is not ast.InfixExpression. got=%T", smtm.Expression)
 		}
-		if !testIntegerLiteral(t, exp.Left, tt.leftValue.(int64)) {
+		if !testLiteralExpression(t, exp.Left, tt.leftValue) {
 			return
 		}
 		if exp.Operator != tt.operator {
 			t.Fatalf("exp.Operator is not '%s'. got=%s", tt.operator, exp.Operator)
 		}
-		if !testIntegerLiteral(t, exp.Right, tt.rightValue.(int64)) {
+		if !testLiteralExpression(t, exp.Right, tt.rightValue) {
 			return
 		}
 	}
