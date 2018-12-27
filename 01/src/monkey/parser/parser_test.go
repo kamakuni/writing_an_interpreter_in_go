@@ -411,7 +411,7 @@ func TestOperatorPrecedenceParsing(t *testing.T) {
 		},
 		{
 			"add(a + b + c * d / f + g)",
-			"add((((a + b) + ((c * d) / f) + g))",
+			"add((((a + b) + ((c * d) / f)) + g))",
 		},
 	}
 
