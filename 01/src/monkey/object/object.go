@@ -6,3 +6,7 @@ type Object interface {
 	Type() ObjectType
 	Inspect() string
 }
+
+type Integer struct {
+	Value int64
+}
