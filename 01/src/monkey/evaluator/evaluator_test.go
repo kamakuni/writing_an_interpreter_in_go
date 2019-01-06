@@ -1,9 +1,9 @@
 package evaluator
 
 import (
-	"monkey/lexer"
-	"monkey/object"
-	"monkey/parser"
+	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/lexer"
+	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/object"
+	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/parser"
 	"testing"
 )
 
