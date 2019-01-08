@@ -18,7 +18,7 @@ func TestEvalIntegerExpression(t *testing.T) {
 
 	for _, tt := range tests {
 		evaluated := testEval(tt.input)
-		testIntegerObject(t, expected, tt.expected)
+		testIntegerObject(t, evaluated, tt.expected)
 	}
 }
 
