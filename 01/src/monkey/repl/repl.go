@@ -3,9 +3,9 @@ package repl
 import (
 	"bufio"
 	"fmt"
+	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/evaluator"
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/lexer"
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/parser"
-	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/token"
 	"io"
 )
 
@@ -28,6 +28,12 @@ func Start(in io.Reader, out io.Writer) {
 		if len(p.Errors()) != 0 {
 			printParserErrors(out, p.Errors())
 			continue
+		}
+
+		evaluated := evaluator.Eval(program)
+		if evaluated != nil {
+			io.WriteString(out, evaluated.Inspect())
+			io.WriteString(out, "\n")
 		}
 	}
 }
