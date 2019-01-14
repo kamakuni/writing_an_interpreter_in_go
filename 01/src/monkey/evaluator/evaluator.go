@@ -34,3 +34,10 @@ func evalStatements(stmts []ast.Statement) object.Object {
 
 	return result
 }
+
+func nativeBoolToBooleanObject(input bool) *object.Boolean {
+	if input {
+		return TRUE
+	}
+	return FALSE
+}
