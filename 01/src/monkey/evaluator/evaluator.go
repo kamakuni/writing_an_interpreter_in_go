@@ -5,6 +5,11 @@ import (
 	"github.com/kamakuni/writing_an_interpreter_in_go/01/src/monkey/object"
 )
 
+var (
+	TRUE  = &object.Boolean{Value: true}
+	FALSE = &object.Boolean{Value: false}
+)
+
 func Eval(node ast.Node) object.Object {
 	switch node := node.(type) {
 	case *ast.Program:
