@@ -21,9 +21,16 @@ func Eval(node ast.Node) object.Object {
 		return &object.Integer{Value: node.Value}
 	case *ast.Boolean:
 		return nativeBoolToBooleanObject(node.Value)
+	case *ast.PrefixExpression:
+		right := Eval(node.Right)
+		return evalPrefixExpression(node.Operator, right)
 	}
 
 	return nil
+}
+
+func evalPrefixExpression(operator string, right object.Object) object.Object {
+	return NULL
 }
 
 func evalStatements(stmts []ast.Statement) object.Object {
