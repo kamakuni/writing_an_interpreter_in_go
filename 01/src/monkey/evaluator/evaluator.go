@@ -54,7 +54,12 @@ func evalBangOperatorExpression(right object.Object) object.Object {
 }
 
 func evalMinusPrefixOperatorExpression(right object.Object) object.Object {
-	return NULL
+	if right.Type() != object.INTEGER_OBJ {
+		return NULL
+	}
+
+	value := right.(*object.Integer).Value
+	return &object.Integer{Value: -value}
 }
 
 func evalStatements(stmts []ast.Statement) object.Object {
