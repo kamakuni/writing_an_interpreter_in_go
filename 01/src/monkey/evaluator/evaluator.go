@@ -44,8 +44,13 @@ func evalPrefixExpression(operator string, right object.Object) object.Object {
 	}
 }
 
-func evalInfixExpression(operator string, left object.Object, right object.Object) object.Object {
-	return NULL
+func evalInfixExpression(operator string, left, right object.Object) object.Object {
+	switch {
+	case left.Type() == object.INTEGER_OBJ && right.Type() == object.INTEGER_OBJ:
+		return NULL
+	default:
+		return NULL
+	}
 }
 
 func evalBangOperatorExpression(right object.Object) object.Object {
