@@ -108,6 +108,24 @@ func TestBangOperator(t *testing.T) {
 
 }
 
+func TestIfElseExpressions(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected interface{}
+	}{
+		{"if (true) { 10 }", 10},
+	}
+	for _, tt := range tests {
+		evaluted := testEval(tt.input)
+		integer, ok := tt.expected.(int)
+		if ok {
+			testIntegerObject(t, evaluted, int64(integer))
+		} else {
+			testNullObject(t, evaluted)
+		}
+	}
+}
+
 func testBooleanObject(t *testing.T, obj object.Object, expected bool) bool {
 	result, ok := obj.(*object.Boolean)
 	if !ok {
