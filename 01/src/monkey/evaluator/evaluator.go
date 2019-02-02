@@ -120,3 +120,16 @@ func nativeBoolToBooleanObject(input bool) *object.Boolean {
 	}
 	return FALSE
 }
+
+func isTruthy(obj object.Object) bool {
+	switch obj {
+	case NULL:
+		return false
+	case TRUE:
+		return true
+	case FALSE:
+		return false
+	default:
+		return true
+	}
+}
