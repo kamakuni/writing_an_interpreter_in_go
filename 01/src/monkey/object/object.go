@@ -16,6 +16,10 @@ type Object interface {
 	Inspect() string
 }
 
+type ReturnValue struct {
+	Value Object
+}
+
 type Integer struct {
 	Value int64
 }
