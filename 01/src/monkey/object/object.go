@@ -20,7 +20,8 @@ type ReturnValue struct {
 	Value Object
 }
 
-func (r *ReturnValue) Type() ObjectType { return RETURN_VALUE_OBJ }
+func (rv *ReturnValue) Type() ObjectType { return RETURN_VALUE_OBJ }
+func (rv *ReturnValue) Inspect() string  { return rv.Value.Inspect() }
 
 type Integer struct {
 	Value int64
