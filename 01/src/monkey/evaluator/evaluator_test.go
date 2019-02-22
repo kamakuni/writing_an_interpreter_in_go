@@ -132,6 +132,23 @@ func TestIfElseExpressions(t *testing.T) {
 	}
 }
 
+func TestReturnStatementt(t *testing.T) {
+	tests := []struct {
+		input    string
+		expected int64
+	}{
+		{"return 10;", 10},
+		{"return 10; 9;", 10},
+		{"return 2 * 5; 9;", 10},
+		{"9; return 2 * 5; 9;", 10},
+	}
+
+	for _, tt := range tests {
+		evaluted := testEval(tt.input)
+		testIntegerObject(t, evaluted, tt.expected)
+	}
+}
+
 func testBooleanObject(t *testing.T, obj object.Object, expected bool) bool {
 	result, ok := obj.(*object.Boolean)
 	if !ok {
