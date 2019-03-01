@@ -29,7 +29,7 @@ func Eval(node ast.Node) object.Object {
 		right := Eval(node.Right)
 		return evalInfixExpression(node.Operator, left, right)
 	case *ast.BlockStatement:
-		return evalStatements(node.Statements)
+		return evalBlockStatement(node)
 	case *ast.IfExpression:
 		return evalIfExpression(node)
 	case *ast.ReturnStatement:
